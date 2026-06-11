@@ -2,21 +2,19 @@ import { defineConfig } from "vite";
 import react from "@vitejs/plugin-react";
 import tailwindcss from "@tailwindcss/vite";
 import path from "path";
+// 1. Tenta pegar a porta do ambiente, se não achar, usa "3000"
+const rawPort = process.env.PORT || "3000";
 
-const rawPort = process.env.PORT;
-
-if (!rawPort) {
-  throw new Error(
-    "PORT environment variable is required but was not provided.",
-  );
-}
-
+// 2. Converte para número (é aqui que a linha vermelha deve sumir)
 const port = Number(rawPort);
 
+// 3. Verifica se a porta é válida
 if (Number.isNaN(port) || port <= 0) {
   throw new Error(`Invalid PORT value: "${rawPort}"`);
 }
-const basePath = process.env.BASE_PATH || 'https://github.com/HugoPiresGregorio/Re-Regsitro';
+
+// 4. Fallback do caminho base para o GitHub Pages (lembre de por o nome real do repo)
+const basePath = process.env.BASE_PATH || '/NOME-DO-SEU-REPOSITORIO/';
 
 export default defineConfig({
   base: basePath,
